@@ -1,0 +1,145 @@
+@use "../../styles/basics";
+
+.main {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    background-color: rgb(243, 243, 243);
+    height: 100%;
+    width: 100%;
+
+    @include basics.media-query(m) {
+        grid-template-columns: 100%;
+    }
+}
+
+.mainImgContainer {
+    height: 100vh;
+    position: relative;
+    animation: imageSlide 0.6s ease-out;
+
+    @include basics.media-query(m) {
+        height: 60vh;
+    }
+}
+
+@keyframes imageSlide {
+    from {
+        transform: translate(-100%);
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
+.sideContainer {
+    position: relative;
+}
+
+.sideContainer.login {
+    -webkit-animation: rotateLogin 1s ease-out;
+    animation: rotateLogin 1s ease-out;
+}
+
+.sideContainer.signup {
+    -webkit-animation: rotateSignup 1s ease-out;
+    animation: rotateSignup 1s ease-out;
+}
+
+@keyframes rotateLogin {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotateSignup {
+    to {
+        opacity: 1;
+    }
+
+    from {
+        opacity: 0;
+    }
+}
+
+.container {
+    max-width: 350px;
+    background-color: #fff;
+    padding: 30px;
+    margin: auto;
+    border: 1px solid rgb(190, 189, 189);
+
+    @include basics.media-query(m) {
+        padding: 10px;
+        margin: 15px auto;
+    }
+}
+
+.container > .heading {
+    text-align: center;
+    font-size: 2.3rem;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin: 4% 0;
+
+    @include basics.media-query(m) {
+        margin: 2% 0;
+        font-size: 1.8rem;
+    }
+}
+
+.container > form {
+    width: 98%;
+    margin: auto;
+}
+
+.container > form > * {
+    margin: 10px 0;
+}
+
+.container > form > button {
+    font-weight: 600;
+    letter-spacing: 0.13rem;
+}
+
+.forgotPassword {
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: rgb(186, 14, 14);
+}
+
+.forgotPassword:hover {
+    text-decoration: underline;
+}
+
+.signUpContainer {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 350;
+}
+
+.signUpContainer > span {
+    font-weight: 550;
+    color: blue;
+}
+
+.signUpContainer > span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signupMessage {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgb(5, 101, 5);
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid var(--primary);
+}

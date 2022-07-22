@@ -1,0 +1,137 @@
+/* Default Elements */
+/* Flex default styles with pattern --displaytype-justifycontent-alignItems-flexDirection-- */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+// All these should be same in _basics.scss and here
+:root {
+    --primary: rgba(27, 182, 125, 255);
+    --secondary: rgb(206, 136, 7);
+    --ternary: rgba(255, 0, 0, 0.729);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    padding: 7px;
+    background-color: var(--primary);
+    color: #ffffff;
+    transition: 0.3s ease;
+    border-radius: 3px;
+
+    &.secondary {
+        background-color: var(--secondary);
+    }
+
+    &.secondary {
+        background-color: var(--secondary);
+    }
+
+    &.danger{
+        background-color: var(--ternary);
+    }
+
+    &.blue {
+        background-color: rgb(7, 157, 207);
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+
+        &:hover {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+    }
+
+    &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    &:active {
+        opacity: 0.96;
+    }
+}
+
+input.primary,
+textarea.primary {
+    border: 0.2px solid rgb(184, 183, 183);
+    background-color: rgb(246, 246, 246);
+    border-radius: 2px;
+    padding: 7px 10px;
+    font-size: 0.75rem;
+
+    &:focus {
+        outline: none;
+        border: 1px solid rgb(132, 132, 132);
+    }
+}
+
+@mixin display-system(
+    $display,
+    $just-cont: flex-start,
+    $align-items: center,
+    $flex-dir: row
+) {
+    display: $display;
+    justify-content: $just-cont;
+    align-items: $align-items;
+    justify-content: $flex-dir;
+}
+
+.flex-fs-c {
+    @include display-system(flex, flex-start, center);
+}
+
+.flex-n-c {
+    @include display-system(flex, flex-start, center);
+}
+
+.flex-se-c {
+    @include display-system(flex, space-evenly, center);
+}
+
+.flex-sb-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-sa-c {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-c-c-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex-c-u-c {
+    display: flex;
+    justify-content: center;
+    align-items: unset;
+    flex-direction: column;
+}
+
+.grid-c {
+    display: grid;
+    place-items: center;
+}

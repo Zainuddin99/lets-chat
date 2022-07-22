@@ -1,0 +1,45 @@
+//Color var should be same here and globals.scss root
+$primary-color: rgba(27, 182, 125, 255);
+
+@function lighten-primary($value: 0) {
+    $value: lighten(
+        $color: $primary-color,
+        $amount: $value,
+    );
+    @return $value;
+}
+
+@function darken-primary($value: 0) {
+    $value: darken(
+        $color: $primary-color,
+        $amount: $value,
+    );
+    @return $value;
+}
+
+@mixin media-query($breakpoint) {
+    @if $breakpoint == l {
+        @media only screen and (max-width: 960px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == m {
+        @media only screen and (max-width: 680px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == s {
+        @media only screen and (max-width: 481px) {
+            @content;
+        }
+    }
+}
+
+@mixin custom-media-query($breakpoint-value) {
+    //To add manual breakpoint
+    @media only screen and (max-width: $breakpoint-value) {
+        @content;
+    }
+}
