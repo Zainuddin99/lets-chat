@@ -14,7 +14,6 @@ function RoomHeader() {
                 </div>
             </div>
             <p>{description}</p>
-            
         </Box>
     )
 }
