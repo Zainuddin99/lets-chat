@@ -9,17 +9,18 @@
     grid-template-rows: min-content auto min-content;
 
     & > .roomHeader {
-        background-color: var(--secondary);
-        color: #fff;
-        padding: 10px;
+        color: rgb(81, 81, 81);
+        background-color: rgb(247, 247, 247);
+        padding: 15px;
         width: 100%;
 
         & h2 {
             margin: 0;
+            font-size: 4rem;
         }
 
         & p {
-            font-size: 0.6rem;
+            font-size: 0.8rem;
             font-style: italic;
             margin-top: 4px;
         }
@@ -34,6 +35,12 @@
         width: 100%;
         display: grid;
         grid-template-columns: auto 50px;
+
+        & input {
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
 
@@ -47,13 +54,13 @@
 .userData {
     display: flex;
     align-items: center;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 
     // Name
     & > div:first-child {
         margin-right: 5px;
-        font-weight: 550;
-        color: rgb(68, 68, 68);
+        font-weight: 500;
+        color: rgb(109, 109, 109);
     }
 
     // Date
@@ -66,14 +73,14 @@
 
 .message {
     display: flex;
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 .messageText {
     margin-top: 4px;
-    font-size: 0.68rem;
-    padding: 8px;
-    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 11px 20px;
+    font-weight: 560;
     max-width: 90%;
     -ms-word-break: break-all;
     word-break: break-all;
