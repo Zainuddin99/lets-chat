@@ -17,9 +17,21 @@ export const userDocRef = (id: string) => doc(firebaseDB, "users", id);
 
 //Function to format Doc response to object
 export const getDocData = (response: any) => {
-    return { id: response.id, ...response.data() };
+    const { createdAt, updatedAt } = response.data();
+    return {
+        id: response.id,
+        ...response.data(),
+        createdAt: createdAt.toDate().toLocaleString(),
+        updatedAt: updatedAt.toDate().toLocaleString(),
+    };
 };
 //To format docs data
 export const getDocsData = (response: any) => {
-    return response.docs.map((item: any) => ({ id: item.id, ...item.data() }));
+    const { createdAt, updatedAt } = response.data();
+    return response.docs.map((item: any) => ({
+        id: item.id,
+        ...item.data(),
+        createdAt: createdAt.toDate().toLocaleString(),
+        updatedAt: updatedAt.toDate().toLocaleString(),
+    }));
 };

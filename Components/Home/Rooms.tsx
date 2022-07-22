@@ -40,7 +40,9 @@ function Rooms() {
     };
 
     useEffect(() => {
-        fetchRooms(null)
+        if (roomsList.length === 0) {
+            fetchRooms(null)
+        }
     }, [])
 
     useEffect(() => {

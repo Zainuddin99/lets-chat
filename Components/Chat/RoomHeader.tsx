@@ -6,7 +6,7 @@ import classes from './chat.module.scss'
 function RoomHeader() {
     const { name, participants, description } = useSelector((state: RootState) => state.chats)
     return (
-        <Box className={classes.roomHeader} sx={{ boxShadow: 1 }}>
+        <Box className={classes.roomHeader} sx={{ boxShadow: 3 }}>
             <div className='flex-sb-c'>
                 <h4>{name}</h4>
                 <div>
