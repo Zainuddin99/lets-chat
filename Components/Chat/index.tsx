@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { limit, onSnapshot, orderBy, query as firebaseQuery } from 'firebase/firestore'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { formatMessageWithUserData } from '../../Firebase/Database/chat'
 import { messagesSubCollectionRef } from '../../Firebase/Database/setup'
 import { addRoomMessages, fetchRoomData, resetChatState } from '../../Redux/chat'
@@ -10,9 +10,12 @@ import classes from './chat.module.scss'
 import InputContainer from './InputContainer'
 import Messages from './Messages'
 import RoomHeader from './RoomHeader'
+import { notifySound } from '../../utils/playSound'
 
 function Chat() {
     const { query } = useRouter()
+    //at initial sound should not played to determine it
+    const initialFetchDoneRef = useRef<boolean>(false)
 
     useEffect(() => {
         //@ts-ignore
@@ -30,11 +33,23 @@ function Chat() {
                     //Check if the chnaged doc is new in the page
                     //Note at initial response all will be new in this subscription
                     if (change.type === "added") {
-                        data.push(formatMessageWithUserData(change.doc))
+                        const formattedData: any = formatMessageWithUserData(change.doc)
+                        data.push(formattedData)
                     }
                 });
                 data = await Promise.all(data)
+                //To play sound
+                if (initialFetchDoneRef.current) {
+                    //Dont play if the message is from current user
+                    if (data[0] && !data[0].loggedUser) {
+                        notifySound()
+                    }
+                }
                 dispatch(addRoomMessages(data))
+                //At initial make fetch done to true
+                if (!initialFetchDoneRef.current) {
+                    initialFetchDoneRef.current = true
+                }
             })
 
         return () => {

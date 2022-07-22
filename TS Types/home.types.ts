@@ -1,3 +1,5 @@
+import { UserBasicData } from "./chat.types";
+
 export type NewRoomInputs = {
     name: string;
     description: string;
@@ -21,6 +23,7 @@ export type HomePageProps = {
 export type Room = {
     id: string;
     name: string;
+    adminData: UserBasicData;
     description: string;
     createdAt: string;
     participants: number;

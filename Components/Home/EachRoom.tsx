@@ -15,7 +15,7 @@ import { Tooltip, Typography } from '@mui/material'
 const toolTipEnterDelay: number = 500
 
 function EachRoom({ item }: { item: Room }) {
-    const { name, description, createdAt, participants, privateRoom, id, alreadyRequested, joined } = item
+    const { name, description, createdAt, participants, privateRoom, id, alreadyRequested, joined, adminData } = item
     const [requesting, setRequesting] = useState<boolean>(false)
 
     const requestJoinHandler = async (type: 'join' | 'remove' | 'join-request') => {
@@ -62,7 +62,7 @@ function EachRoom({ item }: { item: Room }) {
                 </Tooltip>
                 <Tooltip title="Room admin" enterDelay={toolTipEnterDelay}>
                     <Typography color="text.secondary" className={classes.admin}>
-                        <RiAdminLine /> Zainuddin
+                        <RiAdminLine /> {`${adminData.firstName} ${adminData.lastName}`}
                     </Typography>
                 </Tooltip>
                 <Typography variant="h5">

@@ -22,6 +22,7 @@ import {
 import { firebaseAuth } from "../auth";
 import { AllRoomsResponse } from "./rooms.types";
 import { roomDocRef, roomsFBCollection } from "./setup";
+import { fetchUserData } from "./users";
 
 //Constants
 export const inputsLengthCriteria: MaxInputsLength = {
@@ -121,7 +122,7 @@ export const getAllRooms = (
             if (docsLength < roomsLimit) {
                 noMoreRooms = true;
             }
-            const rooms = response.docs.map((item) => {
+            let rooms: any = response.docs.map(async (item) => {
                 const {
                     participants,
                     name,
@@ -129,11 +130,14 @@ export const getAllRooms = (
                     createdAt,
                     privateRoom,
                     requests,
+                    createdBy,
                 } = item.data();
+                const adminData = await fetchUserData(createdBy);
                 return {
                     id: item.id,
                     createdAt: createdAt.toDate().toLocaleDateString(),
                     participants: participants.length,
+                    adminData,
                     name,
                     description,
                     privateRoom,
@@ -145,6 +149,7 @@ export const getAllRooms = (
                     ),
                 };
             });
+            rooms = await Promise.all(rooms);
             resolve({ rooms, noMoreRooms, lastDocumentSnap });
         } catch (error) {
             reject(error);
